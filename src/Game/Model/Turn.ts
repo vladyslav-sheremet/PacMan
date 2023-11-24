@@ -3,7 +3,8 @@ import { IContext } from "./Context/Context"
 
 export interface ITurn
 {
-    Push(command: ICommand): void
+    Push(command: ICommand): void;
+    Remove(): void;
 }
 
 export interface ITurnInternal extends ITurn
@@ -21,6 +22,10 @@ export class Turn implements ITurnInternal
 
     public Push(command: ICommand): void
     { this._commands.push(command); }
+
+    // I tried different variants to delete coin
+    public Remove(): void
+    { this._commands.splice(5, 1); }
 
     // ====== ITurnInternal =========
 

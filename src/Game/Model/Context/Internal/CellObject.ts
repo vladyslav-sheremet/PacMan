@@ -4,6 +4,7 @@ export interface ICellObject
     get Y(): number;
 
     UpdatePosition(x: number, y: number): void;
+    SetPosition(x: number, y: number): void;
 }
 
 // ##############################
@@ -30,6 +31,12 @@ export class CellObject implements ICellObject
     { return this._y; }
 
     public UpdatePosition(x: number, y: number): void
+    {
+        this._x = x;
+        this._y = y;
+    }
+
+    public SetPosition(x: number, y: number): void
     {
         this._x = x;
         this._y = y;

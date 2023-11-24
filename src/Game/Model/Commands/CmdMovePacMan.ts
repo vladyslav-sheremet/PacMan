@@ -20,6 +20,10 @@ export class CmdMovePacMan implements ICommand
     {
         let pacMan: ICellObject = context.PacMan;
         const isCanMove: boolean = context.Field.IsCanMove(pacMan.X, pacMan.Y, this._direction);
+        // Here I tried to delete some coins when PacMan is moving. And how I understand I deleted them from data, but also I should do something to show it, but I don't know how.
+        context.Coin()[3].UpdatePosition(10, 10)
+        context.Coin().splice(3, 10)
+        context.EventManager.SetCoinPosition(3, 1)
 
         if (isCanMove)
         {

@@ -54,10 +54,32 @@ export class PacManGame extends GameBase
     private async GameLoop(): Promise<void>
     {
         this._model.Init();
+        let direction: string = '';
+
+        document.addEventListener('keyup', async (e: KeyboardEvent) => {
+            if (e.key === 'ArrowUp') {
+                direction = 'up';
+            } else if (e.key === 'ArrowRight') {
+                direction = 'right';
+            } else if (e.key === 'ArrowDown') {
+                direction = 'down';
+            }  else if (e.key === 'ArrowLeft') {
+                direction = 'left';
+            }
+        })
 
         while (true)
         {
-            this._model.Update(eDirection.RIGHT);
+            if (direction === 'up') {
+                this._model.Update(eDirection.UP);
+            } else if (direction === 'right') {
+                this._model.Update(eDirection.RIGHT);
+            } else if (direction === 'down') {
+                this._model.Update(eDirection.DOWN);
+            } else if (direction === 'left') {
+                this._model.Update(eDirection.LEFT);
+            }
+
             await this._gameLoopTweener.Timer(this.ITERATION_TIME);
         }
     }
